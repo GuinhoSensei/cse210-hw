@@ -4,7 +4,7 @@ public class BankTransactionProcessor
     {
         foreach (var transaction in transactions)
         {
-            Console.WriteLine("Processing a transaction...");
+            transaction.ProcessTransaction();
         }
     }
 }

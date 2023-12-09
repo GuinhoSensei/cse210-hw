@@ -1,27 +1,32 @@
 public class FixedDepositAccount : Account
 {
-    private DateTime maturityDate;
+    private DateTime MaturityDate;
 
     public FixedDepositAccount(string accountNumber, DateTime maturityDate)
         : base(accountNumber)
     {
-        this.maturityDate = maturityDate;
+        MaturityDate = maturityDate;
     }
 
     public override void Withdraw(decimal amount)
     {
-        if (DateTime.Now < maturityDate)
+        if (DateTime.Now < MaturityDate)
         {
-            Console.WriteLine("Cannot withdraw from a fixed deposit account before maturity date.");
+            Console.WriteLine($"{GetAccountType()} {AccountNumber} - Cannot withdraw from a fixed deposit account before maturity date.");
         }
-        else if (balance >= amount)
+        else if (Balance >= amount)
         {
-            balance -= amount;
-            Console.WriteLine($"Withdrawn {amount:C}. New balance: {balance:C}");
+            Balance -= amount;
+            Console.WriteLine($"{GetAccountType()} {AccountNumber} - Withdrawn {amount:C}. New balance: {Balance:C}");
         }
         else
         {
-            Console.WriteLine("Insufficient funds.");
+            Console.WriteLine($"{GetAccountType()} {AccountNumber} - Insufficient funds.");
         }
+    }
+
+    public override string GetAccountType()
+    {
+        return "Fixed Deposit Account";
     }
 }

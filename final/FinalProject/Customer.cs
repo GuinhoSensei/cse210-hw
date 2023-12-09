@@ -1,17 +1,28 @@
+
 public class Customer
 {
-    private string name;
-    private List<Account> accounts;
+    public string Name { get; private set; }
+    private List<Account> Accounts;
 
     public Customer(string name)
     {
-        this.name = name;
-        accounts = new List<Account>();
+        Name = name;
+        Accounts = new List<Account>();
     }
 
     public void AddAccount(Account account)
     {
-        accounts.Add(account);
-        Console.WriteLine($"{name} added account {account.GetAccountNumber()}");
+        Accounts.Add(account);
+        Console.WriteLine($"{Name} added {account.GetAccountType()} {account.GetAccountNumber()}");
+    }
+
+    public List<Account> GetAccounts()
+    {
+        return Accounts;
+    }
+
+    public Account GetAccountByNumber(string accountNumber)
+    {
+        return Accounts.Find(account => account.GetAccountNumber() == accountNumber);
     }
 }

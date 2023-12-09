@@ -1,29 +1,34 @@
 public abstract class Account
 {
-    private string accountNumber;
-    protected decimal balance;
+    protected string AccountNumber;
+    protected decimal Balance;
 
     public Account(string accountNumber)
     {
-        this.accountNumber = accountNumber;
-        balance = 0;
+        AccountNumber = accountNumber;
+        Balance = 0;
     }
 
     public string GetAccountNumber()
     {
-        return accountNumber;
+        return AccountNumber;
     }
 
     public decimal GetBalance()
     {
-        return balance;
+        return Balance;
     }
 
     public virtual void Deposit(decimal amount)
     {
-        balance += amount;
-        Console.WriteLine($"Deposited {amount:C}. New balance: {balance:C}");
+        Balance += amount;
+        Console.WriteLine($"{GetAccountType()} {AccountNumber} - Deposited {amount:C}. New balance: {Balance:C}");
     }
 
     public abstract void Withdraw(decimal amount);
+
+    public virtual string GetAccountType()
+    {
+        return "Account";
+    }
 }

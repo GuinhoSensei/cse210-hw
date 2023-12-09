@@ -1,30 +1,35 @@
 public class SavingsAccount : Account
 {
-    private decimal interestRate;
+    private decimal InterestRate;
 
     public SavingsAccount(string accountNumber, decimal interestRate)
         : base(accountNumber)
     {
-        this.interestRate = interestRate;
+        InterestRate = interestRate;
     }
 
     public void CalculateInterest()
     {
-        decimal interest = balance * interestRate;
+        decimal interest = Balance * InterestRate;
         Deposit(interest);
-        Console.WriteLine($"Interest calculated: {interest:C}");
+        Console.WriteLine($"{GetAccountType()} {AccountNumber} - Interest calculated: {interest:C}");
     }
 
     public override void Withdraw(decimal amount)
     {
-        if (balance >= amount)
+        if (Balance >= amount)
         {
-            balance -= amount;
-            Console.WriteLine($"Withdrawn {amount:C}. New balance: {balance:C}");
+            Balance -= amount;
+            Console.WriteLine($"{GetAccountType()} {AccountNumber} - Withdrawn {amount:C}. New balance: {Balance:C}");
         }
         else
         {
-            Console.WriteLine("Insufficient funds.");
+            Console.WriteLine($"{GetAccountType()} {AccountNumber} - Insufficient funds.");
         }
+    }
+
+    public override string GetAccountType()
+    {
+        return "Savings Account";
     }
 }

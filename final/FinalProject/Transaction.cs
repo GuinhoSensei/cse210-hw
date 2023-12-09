@@ -1,7 +1,11 @@
 public class Transaction
 {
-    public void ProcessTransaction(Account account, decimal amount)
+    public Account Account { get; set; }
+    public decimal Amount { get; set; }
+
+    public void ProcessTransaction()
     {
-        account.Withdraw(amount);
+        Account.Withdraw(Amount);
+        Console.WriteLine("Processing transaction...");
     }
 }
